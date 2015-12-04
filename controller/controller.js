@@ -1,25 +1,21 @@
-function Controller(data, structure, parent){
+function Controller(data, template, parent){
   var that = this;
   this.data = data || {};
   this.view = {};
   var view = this.view;
 
-  var tags = structure.tags;
-  var container = structure.container;
+  var tags = template(data, helpers).tags;
 
-  view.container = makeTag(container);
-
-  (parent || document.body).appendChild(view.container);
   function loopKeys(tags, parent) {
     tags.order.forEach(function(key) {
 
       view[key] = makeTag(tags[key]);
-      if(that.data[key]) view[key][tagMap.get(tags[key].tag)] = that.data[key];
+      // if(data[key]) view[key][tagMap.get(tags[key].tag)] = data[key];
       parent.appendChild(view[key]);
       if(tags[key].tags) loopKeys(tags[key].tags, view[key]);
     });
   }
-  loopKeys(tags, view.container);
+  loopKeys(tags, parent);
 }
 var tagMap = {
   innerHTML: ['div', 'span', 'section'],
@@ -33,13 +29,22 @@ var tagMap = {
     }
   }
 };
+
+var helpers = {
+  getTime: function() {
+    return Date.now();
+  }
+};
+
 function makeTag(options) {
   var tag = document.createElement(options.tag);
-  tag.className = options.className;
-  tag.id = options.id;
+  if(options.className) tag.className = options.className;
+  if(options.id) tag.id = options.id;
+  if(options.innerHTML) tag.innerHTML = options.innerHTML;
+  if(options.src) tag.src = options.src;
   if(options.data) {
     options.data.forEach(function(data) {
-      tag.setAttribute(data.name, data.value);
+      tag.setAttribute('data-' + data.name, data.value);
     });
   }
   return tag;

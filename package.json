@@ -1,0 +1,28 @@
+{
+  "name": "enorm",
+  "version": "1.0.0",
+  "description": "An experiment with javascript as markup without text parsing",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "no-eval-require": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abelhabel/enorm.git"
+  },
+  "keywords": [
+    "js",
+    "markup"
+  ],
+  "author": "abelhabel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abelhabel/enorm/issues"
+  },
+  "homepage": "https://github.com/abelhabel/enorm#readme"
+}

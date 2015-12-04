@@ -26,8 +26,8 @@ app.get('/js/data/:fileName', function(req, res) {
   res.sendFile(__dirname + '/data/' + req.params.fileName);
 });
 
-app.get('/js/structure/:fileName', function(req, res) {
-  res.sendFile(__dirname + '/structure/' + req.params.fileName);
+app.get('/js/templates/:fileName', function(req, res) {
+  res.sendFile(__dirname + '/templates/' + req.params.fileName);
 });
 
 app.listen(3000);

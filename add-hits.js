@@ -1,9 +1,13 @@
 var Controller = require('controller/controller');
 var data = require('data/hit');
-var structure = require('structure/hit');
+var template = require('templates/hit');
 var parent = document.createElement('div');
-parent.className = 'search-results';
+
+parent.id = 'search-results';
+
 document.body.appendChild(parent);
+window.controllers = [];
 for(var i = 50; i > 0; i -= 1){
-  new Controller(data, structure, parent);
+  data.id = i;
+  window.controllers.push(new Controller(data, template, parent));
 }
