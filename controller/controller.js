@@ -15,7 +15,21 @@ function Controller(data, template, parent){
       if(tags[key].tags) loopKeys(tags[key].tags, view[key]);
     });
   }
+  function updateKeys(tags) {
+    tags.order.forEach(function(key) {
+      updateTag(view[key], tags[key]);
+      if(tags[key].tags) updateKeys(tags[key].tags);
+    });
+  }
   loopKeys(tags, parent);
+
+  this.update = function(data) {
+    var tags = template(data, helpers).tags;
+    this.data = data;
+    updateKeys(tags);
+
+    console.log(this);
+  };
 }
 var tagMap = {
   innerHTML: ['div', 'span', 'section'],
@@ -36,8 +50,7 @@ var helpers = {
   }
 };
 
-function makeTag(options) {
-  var tag = document.createElement(options.tag);
+function updateTag(tag, options) {
   if(options.className) tag.className = options.className;
   if(options.id) tag.id = options.id;
   if(options.innerHTML) tag.innerHTML = options.innerHTML;
@@ -47,6 +60,11 @@ function makeTag(options) {
       tag.setAttribute('data-' + data.name, data.value);
     });
   }
+}
+
+function makeTag(options) {
+  var tag = document.createElement(options.tag);
+  updateTag(tag, options);
   return tag;
 }
 
