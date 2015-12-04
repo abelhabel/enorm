@@ -1,17 +1,17 @@
 var hit = {
-  container: {
-    tag: 'div',
-    className: 'hit-container',
-    id: '',
-    data: [{name: 'id', value: 2}]
-  },
+  container: {tag: 'div', className: 'hit-container', id: '', data: [{name: 'id', value: 2}]},
   tags: {
-    description: {tag: 'div', className: 'hit-description', id: '', data: []},
-    title: {tag: 'div', className: 'hit-title', id: '', data: []},
     image: {tag: 'img', className: 'hit-image', id: '', data: []},
-    phone: {tag: 'div', className: 'hit-phone', id: '', data: []}
+    infoWrap: { tag: 'div', className: 'hit-info-wrapper', id:'',
+      tags: {
+        title: {tag: 'div', className: 'hit-title', id: '', data: []},
+        phone: {tag: 'div', className: 'hit-phone', id: '', data: []},
+        order: ['title', 'phone']
+      }
+    },
+    description: {tag: 'div', className: 'hit-description', id: '', data: []},
+    order: ['image', 'infoWrap', 'description']
   },
-  order: ['title', 'image', 'description', 'phone']
 };
 
 module.exports = hit;

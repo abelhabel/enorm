@@ -1,8 +1,24 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+.search-results {
+  border: 6px solid black;
+  margin: auto;
+  padding: 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
 .hit-container {
   width: 250px;
   height: 100px;
   background-color: lightgray;
+}
+.hit-info-wrapper {
   display: inline-block;
+  vertical-align: top;
 }
 .hit-title {
   font-size: 18px;
@@ -15,7 +31,7 @@
 
 .hit-image {
   max-width: 50px;
-
+  margin: 4px;
 }
 
 .hit-phone {
